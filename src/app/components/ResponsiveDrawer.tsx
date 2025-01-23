@@ -237,9 +237,7 @@ function ResponsiveDrawer(props: ResponsiveDrawerProps) {
   const drawer = (
     <div>
       <Toolbar>
-        <Typography variant="body1" sx={{ fontWeight: 'bolder' }}>
-          Admin Panel Dashboard
-        </Typography>
+        
       </Toolbar>
       <Divider />
       <List>
