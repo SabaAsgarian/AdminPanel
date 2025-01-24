@@ -373,25 +373,29 @@ function Row({ val }: RowProps) {
       </TableCell>
       <TableCell component="th" scope="row">
         {isEditing ? (
-          <Box sx={{ display: 'flex', gap: 1 }}>
+          <Box sx={{ display: 'flex', flexDirection:'column',gap: 1,width:'50%' }}>
             <WhiteTextField
               label="image"
               value={newData.avatar}
               onChange={(e) => setNewData({ ...newData, avatar: e.target.value })}
-              sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
+                sx={{
+                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                  '& .MuiInputBase-input': {
+                    color: darkMode ? '#fff !important' : '#000 !important',
                   },
-                },
-              }}
+                  '& .MuiInputLabel-root': {
+                    color: darkMode ? '#fff' : '#000',
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': {
+                      borderColor: darkMode ? '#fff' : '#000',
+                    },
+                  },
+                  '& label.Mui-focused': {
+                    color: darkMode ? '#fff' : '#000',
+                  },
+
+                }}
             />
             <WhiteTextField
               label="title"
@@ -400,7 +404,7 @@ function Row({ val }: RowProps) {
               sx={{
                 backgroundColor: darkMode ? '#2c3b4f' : '#fff',
                 '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff' : '#000',
+                  color: darkMode ? '#fff !important' : '#000 !important',
                 },
                 '& .MuiInputLabel-root': {
                   color: darkMode ? '#fff' : '#000',
@@ -410,6 +414,10 @@ function Row({ val }: RowProps) {
                     borderColor: darkMode ? '#fff' : '#000',
                   },
                 },
+                '& label.Mui-focused': {
+                  color: darkMode ? '#fff' : '#000',
+                },
+
               }}
             />
             <WhiteTextField
@@ -419,7 +427,7 @@ function Row({ val }: RowProps) {
               sx={{
                 backgroundColor: darkMode ? '#2c3b4f' : '#fff',
                 '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff' : '#000',
+                  color: darkMode ? '#fff !important' : '#000 !important',
                 },
                 '& .MuiInputLabel-root': {
                   color: darkMode ? '#fff' : '#000',
@@ -429,6 +437,10 @@ function Row({ val }: RowProps) {
                     borderColor: darkMode ? '#fff' : '#000',
                   },
                 },
+                '& label.Mui-focused': {
+                  color: darkMode ? '#fff' : '#000',
+                },
+
               }}
             />
             <WhiteTextField
@@ -438,7 +450,7 @@ function Row({ val }: RowProps) {
               sx={{
                 backgroundColor: darkMode ? '#2c3b4f' : '#fff',
                 '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff' : '#000',
+                  color: darkMode ? '#fff !important' : '#000 !important',
                 },
                 '& .MuiInputLabel-root': {
                   color: darkMode ? '#fff' : '#000',
@@ -448,6 +460,10 @@ function Row({ val }: RowProps) {
                     borderColor: darkMode ? '#fff' : '#000',
                   },
                 },
+                '& label.Mui-focused': {
+                  color: darkMode ? '#fff' : '#000',
+                },
+
               }}
             />
             <WhiteTextField
@@ -457,7 +473,7 @@ function Row({ val }: RowProps) {
               sx={{
                 backgroundColor: darkMode ? '#2c3b4f' : '#fff',
                 '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff' : '#000',
+                  color: darkMode ? '#fff !important' : '#000 !important',
                 },
                 '& .MuiInputLabel-root': {
                   color: darkMode ? '#fff' : '#000',
@@ -467,6 +483,10 @@ function Row({ val }: RowProps) {
                     borderColor: darkMode ? '#fff' : '#000',
                   },
                 },
+                '& label.Mui-focused': {
+                  color: darkMode ? '#fff' : '#000',
+                },
+
               }}
             />
             <WhiteTextField
@@ -476,7 +496,7 @@ function Row({ val }: RowProps) {
               sx={{
                 backgroundColor: darkMode ? '#2c3b4f' : '#fff',
                 '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff' : '#000',
+                  color: darkMode ? '#fff !important' : '#000 !important',
                 },
                 '& .MuiInputLabel-root': {
                   color: darkMode ? '#fff' : '#000',
@@ -486,6 +506,10 @@ function Row({ val }: RowProps) {
                     borderColor: darkMode ? '#fff' : '#000',
                   },
                 },
+                '& label.Mui-focused': {
+                  color: darkMode ? '#fff' : '#000',
+                },
+
               }}
             />
 
