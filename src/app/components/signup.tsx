@@ -129,7 +129,7 @@ export default function Signup() {
             (showic2.current.children[0] as HTMLElement).style.display = 'none';
             (showic2.current.children[1] as HTMLElement).style.display = 'flex';
         }
-        setShowpass(!showpass2);
+        setShowpass2(!showpass2);
     }
 
 
