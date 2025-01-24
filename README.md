@@ -1,3 +1,17 @@
+# AdminPanel 
+admin panel with functional sign up and sign in 
+- [Demo Project with sign-up & login](https://admin-panel-xebm.vercel.app/)
+ 
+
+- Developed by Saba Asgarian
+
+- Created - 2025-01-24
+
+- Technologies Used - Html , Css , MaterialUi , Nextjs , React,FetchApi,Crud(Create Read Update Delete) api,Dark-Light mode ,JWT,React Query ,Context Api
+
+- Hooks Used : useState 
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
