@@ -196,6 +196,24 @@ export default function Page() {
                   label={field.charAt(0).toUpperCase() + field.slice(1)}
                   value={formData[field as keyof Product]}
                   onChange={handleInputChange}
+                  sx={{
+                    backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                    '& .MuiInputBase-input': {
+                      color: darkMode ? '#fff !important' : '#000 !important',
+                    },
+                    '& .MuiInputLabel-root': {
+                      color: darkMode ? '#fff' : '#000',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: darkMode ? '#fff' : '#000',
+                      },
+                    },
+                    '& label.Mui-focused': {
+                      color: darkMode ? '#fff' : '#000',
+                    },
+  
+                  }}
                 />
               </Grid>
             ))}
