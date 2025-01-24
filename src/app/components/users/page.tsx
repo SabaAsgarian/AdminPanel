@@ -771,7 +771,7 @@ const Row: React.FC<RowProps> = ({ val }) => {
     <React.Fragment>
       <TableRow sx={{
         '& > *': { borderBottom: 'unset' },
-        backgroundColor: darkMode ? '#222e3c' : '#fff',
+        backgroundColor: darkMode ? '#222e3c' : '#fff'
       }}>
         <TableCell>
           <IconButton
@@ -797,7 +797,7 @@ const Row: React.FC<RowProps> = ({ val }) => {
         </TableCell>
         <TableCell component="th" scope="row">
           {isEditing ? (
-            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap',width:{xs:'200px',lg:'250px'} }}>
               <WhiteTextField
                 label="img"
                 value={newData.img}
