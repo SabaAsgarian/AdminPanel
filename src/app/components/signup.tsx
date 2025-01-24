@@ -215,8 +215,8 @@ export default function Signup() {
                             value={formik.values.pass}
                         />
                         <div onClick={show} ref={showic} className='w-[10%] relative flex justify-center cursor-pointer items-center'>
-                            <span className='hidden justify-center items-center w-full'><VisibilityIcon /></span>
-                            <span className='w-full flex justify-center items-center'><VisibilityOffIcon /></span>
+                            <span className='hidden justify-center items-center w-full' style={{  color: darkMode ? '#fff' : '#0a0a0a' }}><VisibilityIcon /></span>
+                            <span className='w-full flex justify-center items-center' style={{  color: darkMode ? '#fff' : '#0a0a0a' }}><VisibilityOffIcon /></span>
                         </div>
                     </div>
                     {formik.touched.pass && formik.errors.pass ? (
@@ -239,8 +239,8 @@ export default function Signup() {
                             value={formik.values.repeat}
                         />
                         <div onClick={myshow} ref={showic2} className='w-[10%] relative flex justify-center cursor-pointer items-center'>
-                            <span className='hidden justify-center items-center w-full'><VisibilityIcon /></span>
-                            <span className='w-full flex justify-center items-center'><VisibilityOffIcon /></span>
+                            <span className='hidden justify-center items-center w-full' style={{  color: darkMode ? '#fff' : '#0a0a0a' }}><VisibilityIcon /></span>
+                            <span className='w-full flex justify-center items-center' style={{  color: darkMode ? '#fff' : '#0a0a0a' }}><VisibilityOffIcon /></span>
                         </div>
                     </div>
                     {formik.touched.repeat && formik.errors.repeat ? (
