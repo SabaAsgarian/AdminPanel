@@ -23,7 +23,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import EditNoteIcon from "@mui/icons-material/EditNote";
-import myContext from "../../myContext";
+
 import StackedAreas from "../StackedAreas";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";

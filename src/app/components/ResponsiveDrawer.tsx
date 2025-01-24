@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-
+import Logo from '../components/img/1.png'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -40,6 +40,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import { useTheme } from '../themeContext';
 import Switch from '@mui/material/Switch';
+import Image from 'next/image';
 
 const darkTheme = createTheme({
   palette: {
@@ -237,7 +238,10 @@ function ResponsiveDrawer(props: ResponsiveDrawerProps) {
   const drawer = (
     <div>
       <Toolbar>
-        
+     
+      <Image src={Logo} alt='logo' style={{width:'50px',height:'50px'}}/>
+      <Typography variant='h5' sx={{marginLeft:'3%',fontWeight:'bolder',fontStyle:'oblique'}}>Droplet </Typography>
+  
       </Toolbar>
       <Divider />
       <List>
