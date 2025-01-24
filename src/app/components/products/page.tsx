@@ -373,7 +373,7 @@ function Row({ val }: RowProps) {
       </TableCell>
       <TableCell component="th" scope="row">
         {isEditing ? (
-          <Box sx={{ display: 'flex', flexDirection:'column',gap: 1,width:'50%' }}>
+          <Box sx={{ display: 'flex', flexDirection:'column',gap: 1,width:{xs:'100%',lg:'60%'} }}>
             <WhiteTextField
               label="image"
               value={newData.avatar}
