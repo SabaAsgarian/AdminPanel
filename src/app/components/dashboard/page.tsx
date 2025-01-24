@@ -426,7 +426,7 @@ const Row: React.FC<RowProps> = ({ val }) => {
         </TableCell>
         <TableCell component="th" scope="row">
           {isEditing ? (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1,width:{xs:'210px',lg:'100%'} }}>
               <TextField
                 label="ID"
                 value={newData.id}
