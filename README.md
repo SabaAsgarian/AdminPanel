@@ -9,7 +9,27 @@ admin panel with functional sign up and sign in
 
 - Technologies Used - Html , Css , MaterialUi , Nextjs , React,Typescript,FetchApi,Crud(Create Read Update Delete) api,Dark-Light mode ,JWT,React Query ,Context Api
 
-- Hooks Used : useState 
+- Hooks Used : useState
+- ---------------------------
+![Image](https://github.com/user-attachments/assets/33e579cf-d44b-472b-b611-e20ad01e9653)
+
+![Image](https://github.com/user-attachments/assets/72103d01-23cf-435b-bcc9-2fda8267ca6c)
+
+![Image](https://github.com/user-attachments/assets/e7a88d36-1bd2-46b5-b530-aac742f75607)
+
+![Image](https://github.com/user-attachments/assets/9c8f664e-3c55-42fc-ae94-00242a34c996)
+
+![Image](https://github.com/user-attachments/assets/366e2b00-51e7-4f15-9ed3-8b7418da2de1)
+
+![Image](https://github.com/user-attachments/assets/08a1d651-beab-41e8-9f22-a94fbe7c982d)
+
+![Image](https://github.com/user-attachments/assets/365abf39-5800-46cc-9751-02bd6ce1d388)
+
+![Image](https://github.com/user-attachments/assets/bbdf769f-3578-4d2f-9c48-c963d06a6564)
+
+![Image](https://github.com/user-attachments/assets/d560db0a-407f-4740-9c2d-c97bd3a6ddd6)
+
+![Image](https://github.com/user-attachments/assets/7204b292-7e97-441f-95f3-8c7c71929235)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
