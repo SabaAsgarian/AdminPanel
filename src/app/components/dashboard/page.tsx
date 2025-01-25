@@ -93,7 +93,7 @@ const productStats = [
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   const { dashboardData, setDashboardData } = useMyContext();
   const [searchTerm, setSearchTerm] = useState('');
   const { darkMode } = useTheme();
@@ -188,7 +188,7 @@ const Dashboard: React.FC = () => {
                 </Pie>
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: darkMode ? '#222e3c' : '#fff',
+                    backgroundColor: darkMode ? 'white' : '#fff',
                     color: darkMode ? '#fff' : '#000',
                   }}
                 />
