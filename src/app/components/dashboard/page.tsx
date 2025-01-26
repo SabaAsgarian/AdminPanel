@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Grid, TextField, Typography } from "@mui/material";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -65,7 +65,35 @@ interface User {
   pass?: string;
   age?: string;
 }
-
+const WhiteTextField = styled(TextField)({
+  backgroundColor: 'transparent',
+  borderRadius: '4px',
+  '& .MuiInputBase-input': {
+    color: 'black', // Text color
+  },
+  '& .MuiInputLabel-root': {
+    color: 'black', // Label color
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'black', // Border color
+    },
+    '&:hover fieldset': {
+      borderColor: 'black', // Hover border color
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'black', // Focused border color
+    },
+  },
+  '& .MuiInputBase-root': {
+    '&.Mui-focused .MuiInputBase-input': {
+      color: 'black', // Ensure text stays black when focused
+    },
+  },
+  '& label.Mui-focused': {
+    color: 'black',
+  },
+});
 const StyledItem = styled(StyledPaper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -426,358 +454,52 @@ const Row: React.FC<RowProps> = ({ val }) => {
         </TableCell>
         <TableCell component="th" scope="row">
           {isEditing ? (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1,width:{xs:'210px',lg:'100%'} }}>
-              <TextField
-                label="ID"
-                value={newData.id}
-                disabled
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="Image URL"
-                value={newData.img}
-                onChange={(e) => setNewData({ ...newData, img: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="First Name"
-                value={newData.fname}
-                onChange={(e) => setNewData({ ...newData, fname: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="Last Name"
-                value={newData.lname}
-                onChange={(e) => setNewData({ ...newData, lname: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="Status"
-                value={newData.status}
-                onChange={(e) => setNewData({ ...newData, status: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="Email"
-                value={newData.email}
-                onChange={(e) => setNewData({ ...newData, email: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="City"
-                value={newData.city}
-                onChange={(e) => setNewData({ ...newData, city: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="Street"
-                value={newData.street}
-                onChange={(e) => setNewData({ ...newData, street: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
-              <TextField
-                label="Mobile"
-                value={newData.mobile}
-                onChange={(e) => setNewData({ ...newData, mobile: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                 
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                    borderColor: darkMode ? '#fff !important' : '#000 !important', // Ensure border color is set for both modes
-                  },
-                  
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: 'black', // Border color
-                    },
-                    '&:hover fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', // Hover border color
-                    },
-                    '&.Mui-focused fieldset': {
-                      borderColor: darkMode ? '#fff !important' : '#000 !important', 
-                    },
-                  },
-                  '& .MuiInputBase-root': {
-                    '&.Mui-focused .MuiInputBase-input': {
-                      color: 'black', // Ensure text stays black when focused
-                    },
-                  },
-                 
-
-                }}
-              />
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1,width:{xs:'210px'} }}>
+              <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
+              <Grid item xs={12} >
+                {([
+                  { name: 'img' as keyof User, label: 'Image' },
+                  { name: 'fname' as keyof User, label: 'First Name' },
+                  { name: 'lname' as keyof User, label: 'Last Name' },
+                  { name: 'street' as keyof User, label: 'Street' },
+                  { name: 'status' as keyof User, label: 'Status' },
+                  { name: 'user' as keyof User, label: 'User' },
+                  { name: 'age' as keyof User, label: 'Age' },
+                  { name: 'pass' as keyof User, label: 'Password' },
+                  { name: 'city' as keyof User, label: 'City' },
+                  { name: 'email' as keyof User, label: 'Email' },
+                  { name: 'mobile' as keyof User, label: 'Mobile' }
+                ]).map((field) => (
+                  <WhiteTextField
+                    key={field.name}
+                    id={field.name}
+                    name={field.name}
+                    label={field.label}
+                    value={newData[field.name]}
+                    onChange={(e) => setNewData({ ...newData, [field.name]: e.target.value })}
+                    sx={{
+                      backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                      '& .MuiInputBase-input': {
+                        color: darkMode ? '#fff !important' : '#000 !important',
+                      },
+                      '& .MuiInputLabel-root': {
+                        color: darkMode ? '#fff' : '#000',
+                      },
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: darkMode ? 'white' : '#000',
+                        },
+                      },
+                      '& label.Mui-focused': {
+                        color: darkMode ? '#fff' : '#000',
+                      
+                      },
+                    }}
+                  />
+                ))}
+             </Grid>
+             </Grid>
+              
               <IconButton onClick={handleSave}>
                 <EditNoteIcon sx={{ color: darkMode ? '#fff' : '#000' }} />
               </IconButton>

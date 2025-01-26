@@ -69,7 +69,7 @@ export default function page() {
           onChange={toggleDarkMode}
         />
       </Box>
-      <Container className='container' maxWidth="xl" sx={{ backgroundColor: darkMode ? '#222e3c' : '#ffffff', height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '10px' ,    boxShadow: darkMode 
+      <Container className='container' maxWidth="xl" sx={{paddingY:{xs:'15%',lg:'0px'}, backgroundColor: darkMode ? '#222e3c' : '#ffffff', height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '10px' ,    boxShadow: darkMode 
             ? '0px 0px 10px 0px rgba(0, 0, 0, 0.5)'
             : '0px 0px 10px 0px rgba(0, 0, 0, 0.1)',
           color: darkMode ? '#fff' : '#0a0a0a'}}>

@@ -122,6 +122,7 @@ const Login: React.FC = () => {
         className='container' 
         maxWidth="xl" 
         sx={{ 
+          padding:{xs:'15%',md:'0px'},
           backgroundColor: darkMode ? '#222e3c' : '#ffffff',
           height: 'auto', 
           display: 'flex', 

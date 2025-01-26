@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState, ChangeEvent } from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Box, Button, FormControl,  InputAdornment, TextField, Paper, IconButton, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Pagination, PaginationItem, Collapse,  Grid } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Box, Button, FormControl, InputAdornment, TextField, Paper, IconButton, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Pagination, PaginationItem, Collapse, Grid } from '@mui/material';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -25,7 +25,6 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Delete as DeleteIcon } from '@mui/icons-material';
 import { getCookie } from 'cookies-next';
 
-// Define the types for form data
 interface FormData {
   img: string;
   fname: string;
@@ -71,7 +70,7 @@ interface RowProps {
 interface WhiteTextFieldProps {
   darkMode?: boolean;
 }
-const WhiteTextField = styled(TextField)<WhiteTextFieldProps>(({  darkMode = false }) => ({
+const WhiteTextField = styled(TextField)<WhiteTextFieldProps>(({ darkMode = false }) => ({
   backgroundColor: darkMode ? '#2c3b4f' : '#fff',
   '& .MuiInputBase-input': {
     color: darkMode ? '#fff !important' : '#000 !important',
@@ -97,8 +96,8 @@ const WhiteTextField = styled(TextField)<WhiteTextFieldProps>(({  darkMode = fal
   },
   '& .MuiInputBase-root': {
     '&.Mui-focused .MuiInputBase-input': {
-    color: 'black',
-  },
+      color: 'black',
+    },
   },
 }));
 const StyledButton = styled(Button)({
@@ -132,9 +131,9 @@ const Page: React.FC = () => {
   const [editFormData, setEditFormData] = useState<RowData | null>(null);
   const queryClient = useQueryClient();
   const rowsPerPage = 5;
- 
 
-  const { data: users = []} = useQuery({
+
+  const { data: users = [] } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const response = await fetch('https://66b9e0c8fa763ff550f9f4a9.mockapi.io/admin', {
@@ -143,11 +142,11 @@ const Page: React.FC = () => {
           'Content-Type': 'application/json'
         }
       });
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch users');
       }
-      
+
       return response.json();
     }
   });
@@ -160,7 +159,7 @@ const Page: React.FC = () => {
   const addUserMutation = useMutation({
     mutationFn: async (userData: FormData) => {
       const response = await fetch('https://66b9e0c8fa763ff550f9f4a9.mockapi.io/admin', {
-      method: 'POST',
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${getCookie('token')}`,
           'Content-Type': 'application/json'
@@ -174,22 +173,26 @@ const Page: React.FC = () => {
       queryClient.setQueryData(['users'], (oldData: RowData[] | undefined) => {
         if (!oldData) return [newUser];
         return [...oldData, newUser];
+
+      }
+      );
+      alert('New User Added!');
+      setFormData({
+        img: '',
+        fname: '',
+        lname: '',
+        street: '',
+        status: '',
+        user: '',
+        age: '',
+        pass: '',
+        city: '',
+        email: '',
+        mobile: '',
       });
-          setFormData({
-            img: '',
-            fname: '',
-            lname: '',
-            street: '',
-            status: '',
-            user: '',
-            age: '',
-            pass: '',
-            city: '',
-            email: '',
-            mobile: '',
-          });
       setOpen(false);
     },
+   
   });
 
   const handleSubmit = () => {
@@ -215,15 +218,21 @@ const Page: React.FC = () => {
       if (!response.ok) throw new Error('Failed to update user');
       return response.json();
     },
+
     onSuccess: (updatedUser) => {
+    
       // آپدیت مستقیم کش
       queryClient.setQueryData(['users'], (oldData: RowData[] | undefined) => {
         if (!oldData) return [updatedUser];
         return oldData.map(user => user.id === updatedUser.id ? updatedUser : user);
+       
       });
+     
       setEditingId(null);
       setEditFormData(null);
+    
     },
+    
   });
 
   // اصلاح mutation برای delete
@@ -279,23 +288,23 @@ const Page: React.FC = () => {
   //   }
   // };
 
-  
+
 
   // const paginatedUsers = users.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
   return (
     <ResponsiveDrawer>
       <Box sx={{ color: darkMode ? '#fff' : '#000' }}>
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          mb: 4 
+          mb: 4
         }}>
           <h1>
             <PeopleIcon /> Users
           </h1>
-          
+
           {/* Search Box */}
           <WhiteTextField
             placeholder="Search by name..."
@@ -324,7 +333,7 @@ const Page: React.FC = () => {
         </Box>
 
         <CollapsibleTable searchTerm={searchTerm} />
-        
+
         <Box sx={{
           display: 'flex',
           justifyContent: 'start',
@@ -359,220 +368,48 @@ const Page: React.FC = () => {
           </AccordionSummary>
           <AccordionDetails >
             <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
-             
-            <Grid  item xs={6} sm={8} lg={12} >
-              
-       
-              <FormControl variant="standard">
-                <WhiteTextField
-                  id="img"
-                  name="img"
-                  label="Image"
-                  value={formData.img}
-                  onChange={handleInputChange}
-                  sx={{
-                    backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                    '& .MuiInputBase-input': {
-                      color: darkMode ? '#fff !important' : '#000 !important',
-                    },
-                    '& .MuiInputLabel-root': {
-                      color: darkMode ? '#fff' : '#000',
-                    },
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: darkMode ? '#fff' : '#000',
+              <Grid item xs={6} sm={8} lg={12}>
+                {([
+                  { name: 'img' as keyof FormData, label: 'Image' },
+                  { name: 'fname' as keyof FormData, label: 'First Name' },
+                  { name: 'lname' as keyof FormData, label: 'Last Name' },
+                  { name: 'street' as keyof FormData, label: 'Street' },
+                  { name: 'status' as keyof FormData, label: 'Status' },
+                  { name: 'user' as keyof FormData, label: 'User' },
+                  { name: 'age' as keyof FormData, label: 'Age' },
+                  { name: 'pass' as keyof FormData, label: 'Password' },
+                  { name: 'city' as keyof FormData, label: 'City' },
+                  { name: 'email' as keyof FormData, label: 'Email' },
+                  { name: 'mobile' as keyof FormData, label: 'Mobile' }
+                ]).map((field) => (
+                  <WhiteTextField
+                    key={field.name}
+                    id={field.name}
+                    name={field.name}
+                    label={field.label}
+                    value={formData[field.name]}
+                    onChange={handleInputChange}
+                    sx={{
+                      backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                      '& .MuiInputBase-input': {
+                        color: darkMode ? '#fff !important' : '#000 !important',
                       },
-                    },
-                    '& label.Mui-focused': {
-                      color: darkMode ? '#fff' : '#000',
-                    },
-
-                  }}
-                />
-              </FormControl>
-              <WhiteTextField sx={{
-
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="fname" name="fname" label="First Name" value={formData.fname} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="lname" name="lname" label="Last Name" value={formData.lname} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="street" name="street" label="Street" value={formData.street} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="status" name="status" label="Status" value={formData.status} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="user" name="user" label="User" value={formData.user} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="age" name="age" label="Age" value={formData.age} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="pass" name="pass" label="Password" value={formData.pass} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="city" name="city" label="City" value={formData.city} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="email" name="email" label="Email" value={formData.email} onChange={handleInputChange} />
-              <WhiteTextField sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }} id="mobile" name="mobile" label="Mobile" value={formData.mobile} onChange={handleInputChange} />
-              <StyledButton variant="contained" onClick={handleSubmit}>Submit</StyledButton>
-            </Grid>
+                      '& .MuiInputLabel-root': {
+                        color: darkMode ? '#fff' : '#000',
+                      },
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                          borderColor: darkMode ? '#fff' : '#000',
+                        },
+                      },
+                      '& label.Mui-focused': {
+                        color: darkMode ? '#fff' : '#000',
+                      },
+                    }}
+                  />
+                ))}
+                <StyledButton variant="contained" onClick={handleSubmit}>Submit</StyledButton>
+              </Grid>
             </Grid>
           </AccordionDetails>
         </Accordion>
@@ -622,7 +459,7 @@ const CollapsibleTable: React.FC<{ searchTerm: string }> = ({ searchTerm }) => {
 
   const handleChange = (_: React.ChangeEvent<unknown>, value: number) => { // Use '_' to indicate unused parameter
     setPage(value);
-};
+  };
 
   return (
     <>
@@ -678,25 +515,25 @@ const CollapsibleTable: React.FC<{ searchTerm: string }> = ({ searchTerm }) => {
         </Table>
       </TableContainer>
       {filteredData.length > rowsPerPage && (
-      <Pagination
-        count={Math.ceil(filteredData.length / rowsPerPage)}
-        page={page}
-        onChange={handleChange}
-        sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}
-        renderItem={(item) => (
-          <PaginationItem
-            slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-            {...item}
-            sx={{ 
-              color: darkMode ? '#fff' : '#000',
-              '&.Mui-selected': {
-                backgroundColor: darkMode ? '#3269ba' : '#1976d2',
-                color: '#fff',
-              },
-            }}
-          />
-        )}
-      />
+        <Pagination
+          count={Math.ceil(filteredData.length / rowsPerPage)}
+          page={page}
+          onChange={handleChange}
+          sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}
+          renderItem={(item) => (
+            <PaginationItem
+              slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+              {...item}
+              sx={{
+                color: darkMode ? '#fff' : '#000',
+                '&.Mui-selected': {
+                  backgroundColor: darkMode ? '#3269ba' : '#1976d2',
+                  color: '#fff',
+                },
+              }}
+            />
+          )}
+        />
       )}
     </>
   );
@@ -788,8 +625,8 @@ const Row: React.FC<RowProps> = ({ val }) => {
           <Avatar
             alt={`${val.fname} ${val.lname}`}
             src={val.img}
-            sx={{ 
-              width: 40, 
+            sx={{
+              width: 40,
               height: 40,
               border: darkMode ? '2px solid #fff' : '2px solid #000'
             }}
@@ -797,261 +634,50 @@ const Row: React.FC<RowProps> = ({ val }) => {
         </TableCell>
         <TableCell component="th" scope="row">
           {isEditing ? (
-            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap',width:{xs:'200px',lg:'250px'} }}>
-              <WhiteTextField
-                label="img"
-                value={newData.img}
-                onChange={(e) => setNewData({ ...newData, img: e.target.value })}
-
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="fname"
-                value={newData.fname}
-                onChange={(e) => setNewData({ ...newData, fname: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="lname"
-                value={newData.lname}
-                onChange={(e) => setNewData({ ...newData, lname: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="status"
-                value={newData.status}
-                onChange={(e) => setNewData({ ...newData, status: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="email"
-                value={newData.email}
-                onChange={(e) => setNewData({ ...newData, email: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="mobile"
-                value={newData.mobile}
-                onChange={(e) => setNewData({ ...newData, mobile: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="pass"
-                value={newData.pass}
-                onChange={(e) => setNewData({ ...newData, pass: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="user"
-                value={newData.user}
-                onChange={(e) => setNewData({ ...newData, user: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="city"
-                value={newData.city}
-                onChange={(e) => setNewData({ ...newData, city: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="street"
-                value={newData.street}
-                onChange={(e) => setNewData({ ...newData, street: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
-              <WhiteTextField
-                label="age"
-                value={newData.age}
-                onChange={(e) => setNewData({ ...newData, age: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
-                    },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-
-                }}
-              />
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', width: { xs: '200px', lg: '250px' } }}>
+              <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
+                <Grid item xs={6} sm={8} lg={12}>
+                  {([
+                    { name: 'img' as keyof RowData, label: 'Image' },
+                    { name: 'fname' as keyof RowData, label: 'First Name' },
+                    { name: 'lname' as keyof RowData, label: 'Last Name' },
+                    { name: 'street' as keyof RowData, label: 'Street' },
+                    { name: 'status' as keyof RowData, label: 'Status' },
+                    { name: 'user' as keyof RowData, label: 'User' },
+                    { name: 'age' as keyof RowData, label: 'Age' },
+                    { name: 'pass' as keyof RowData, label: 'Password' },
+                    { name: 'city' as keyof RowData, label: 'City' },
+                    { name: 'email' as keyof RowData, label: 'Email' },
+                    { name: 'mobile' as keyof RowData, label: 'Mobile' }
+                  ]).map((field) => (
+                    <WhiteTextField
+                      key={field.name}
+                      id={field.name}
+                      name={field.name}
+                      label={field.label}
+                      value={newData[field.name]}
+                      onChange={(e) => setNewData({ ...newData, [field.name]: e.target.value })}
+                      sx={{
+                        backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                        '& .MuiInputBase-input': {
+                          color: darkMode ? '#fff !important' : '#000 !important',
+                        },
+                        '& .MuiInputLabel-root': {
+                          color: darkMode ? '#fff' : '#000',
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '& fieldset': {
+                            borderColor: darkMode ? '#fff' : '#000',
+                          },
+                        },
+                        '& label.Mui-focused': {
+                          color: darkMode ? '#fff' : '#000',
+                        },
+                      }}
+                    />
+                  ))}
+                </Grid>
+              </Grid>
               <IconButton onClick={handleSave}>
                 <EditNoteIcon sx={{ color: darkMode ? '#fff' : '#000' }} />
               </IconButton>
@@ -1102,8 +728,8 @@ const Row: React.FC<RowProps> = ({ val }) => {
                 <Avatar
                   alt={`${val.fname} ${val.lname}`}
                   src={val.img}
-                  sx={{ 
-                    width: 80, 
+                  sx={{
+                    width: 80,
                     height: 80,
                     border: darkMode ? '2px solid #fff' : '2px solid #000'
                   }}
