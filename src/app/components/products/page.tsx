@@ -282,9 +282,7 @@ function CollapsibleTable() {
           </TableHead>
           <TableBody>
             {paginatedData.map((val: Product) => (
-              <TableRow key={val.id}>
-                <Row val={val} />
-              </TableRow>
+              <Row key={val.id} val={val} />
             ))}
           </TableBody>
         </Table>
@@ -361,187 +359,96 @@ function Row({ val }: RowProps) {
 
   return (
     <React.Fragment>
-      <TableCell>
-        <IconButton
-          aria-label="expand row"
-          size="small"
-          onClick={() => setOpen(!open)}
-          sx={{ color: darkMode ? '#fff' : '#000' }}
-        >
-          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-        </IconButton>
-      </TableCell>
-      <TableCell component="th" scope="row">
-        {isEditing ? (
-          <Box sx={{ display: 'flex', flexDirection:'column',gap: 1,width:{xs:'100%',lg:'60%'} }}>
-            <WhiteTextField
-              label="image"
-              value={newData.avatar}
-              onChange={(e) => setNewData({ ...newData, avatar: e.target.value })}
-                sx={{
-                  backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                  '& .MuiInputBase-input': {
-                    color: darkMode ? '#fff !important' : '#000 !important',
-                  },
-                  '& .MuiInputLabel-root': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
-                  '& .MuiOutlinedInput-root': {
-                    '& fieldset': {
-                      borderColor: darkMode ? '#fff' : '#000',
+      <TableRow>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+            sx={{ color: darkMode ? '#fff' : '#000' }}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {isEditing ? (
+            <Box sx={{ display: 'flex', flexDirection:'column',gap: 1,width:{xs:'100%',lg:'60%'} }}>
+            <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
+            {["avatar", "title", "brand", "price", "color", "description"].map((field) => (
+              <Grid key={field} item xs={12} sm={8} lg={6} xl={6}>
+                <WhiteTextField
+                  id={field}
+                  name={field}
+                  label={field.charAt(0).toUpperCase() + field.slice(1)}
+                  value={newData[field as keyof Product]}
+                  onChange={(e) => setNewData({ ...newData, [field]: e.target.value })}
+                  sx={{
+                    backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                    '& .MuiInputBase-input': {
+                      color: darkMode ? '#fff !important' : '#000 !important',
                     },
-                  },
-                  '& label.Mui-focused': {
-                    color: darkMode ? '#fff' : '#000',
-                  },
+                    '& .MuiInputLabel-root': {
+                      color: darkMode ? '#fff' : '#000',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': {
+                        borderColor: darkMode ? '#fff' : '#000',
+                      },
+                    },
+                    '& label.Mui-focused': {
+                      color: darkMode ? '#fff' : '#000',
+                    },
+    
+                  }}
+                />
+              </Grid>
+            ))}
+          </Grid>
 
-                }}
-            />
-            <WhiteTextField
-              label="title"
-              value={newData.title}
-              onChange={(e) => setNewData({ ...newData, title: e.target.value })}
-              sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }}
-            />
-            <WhiteTextField
-              label="brand"
-              value={newData.brand}
-              onChange={(e) => setNewData({ ...newData, brand: e.target.value })}
-              sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }}
-            />
-            <WhiteTextField
-              label="price"
-              value={newData.price}
-              onChange={(e) => setNewData({ ...newData, price: e.target.value })}
-              sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }}
-            />
-            <WhiteTextField
-              label="color"
-              value={newData.color}
-              onChange={(e) => setNewData({ ...newData, color: e.target.value })}
-              sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }}
-            />
-            <WhiteTextField
-              label="description"
-              value={newData.description}
-              onChange={(e) => setNewData({ ...newData, description: e.target.value })}
-              sx={{
-                backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                '& .MuiInputBase-input': {
-                  color: darkMode ? '#fff !important' : '#000 !important',
-                },
-                '& .MuiInputLabel-root': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': {
-                    borderColor: darkMode ? '#fff' : '#000',
-                  },
-                },
-                '& label.Mui-focused': {
-                  color: darkMode ? '#fff' : '#000',
-                },
-
-              }}
-            />
-
-            <IconButton 
-              onClick={handleSave}
-              sx={{ color: darkMode ? '#fff' : '#000' }}
-            >
-              <EditNoteIcon />
-            </IconButton>
-          </Box>
-        ) : (
-          <Txt2 data={val} />
-        )}
-      </TableCell>
-      <TableCell align="left">{val.price}</TableCell>
-      <TableCell align="left">{val.color}</TableCell>
-      <TableCell align="center">
-        <IconButton 
-          onClick={handleEditClick}
-          sx={{ color: darkMode ? '#fff' : '#000' }}
-        >
-          <EditNoteIcon />
-        </IconButton>
-      </TableCell>
-      <TableCell align="center">
-        <IconButton 
-          onClick={handleDelete}
-          sx={{ color: darkMode ? '#fff' : '#000' }}
-        >
-          <DeleteOutlineIcon />
-        </IconButton>
-      </TableCell>
+              <IconButton 
+                onClick={handleSave}
+                sx={{ color: darkMode ? '#fff' : '#000' }}
+              >
+                <EditNoteIcon />
+              </IconButton>
+            </Box>
+          ) : (
+            <Txt2 data={val} />
+          )}
+        </TableCell>
+        <TableCell align="left">{val.price}</TableCell>
+        <TableCell align="left">{val.color}</TableCell>
+        <TableCell align="center">
+          <IconButton 
+            onClick={handleEditClick}
+            sx={{ color: darkMode ? '#fff' : '#000' }}
+          >
+            <EditNoteIcon />
+          </IconButton>
+        </TableCell>
+        <TableCell align="center">
+          <IconButton 
+            onClick={handleDelete}
+            sx={{ color: darkMode ? '#fff' : '#000' }}
+          >
+            <DeleteOutlineIcon />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Typography variant="h6" gutterBottom component="div" sx={{ color: darkMode ? '#fff' : '#000' }}>
+                More Detail:
+              </Typography>
+              <Typography variant="body2" sx={{ color: darkMode ? '#fff' : '#000' }}>
+                description: {val.description}
+              </Typography>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
     </React.Fragment>
   );
 }
