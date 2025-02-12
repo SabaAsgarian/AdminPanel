@@ -198,9 +198,9 @@ const Dashboard = () => {
           mt: 4
         }}>
           {/* circle chart*/}
-          <StyledPaper sx={{ p: 2 }}>
+          <StyledPaper sx={{ p: 2 ,width:{xs:'50%',sm:'auto'}}}>
             <h2>Users status</h2>
-            <Box sx={{width:{xs:'50%',sm:'auto',lg:'100%'},minHeight:'400px',maxHeight:'auto' }}>
+            <Box sx={{minHeight:'400px',maxHeight:'auto' }}>
             <ResponsiveContainer width="100%" height={400} >
               <PieChart >
                 <Pie
@@ -233,9 +233,9 @@ const Dashboard = () => {
           </StyledPaper>
 
           {/* bar chart*/}
-          <StyledPaper sx={{ p: 2 }}>
+          <StyledPaper sx={{ p: 2 ,width:{xs:'50%',sm:'auto'}}}>
             <h2>Products Statistics</h2>
-            <Box sx={{paddingTop:{xs:'0',lg:'10%'},width:{xs:'50%',sm:'auto'},minHeight:'300px',maxHeight:'auto'}}>
+            <Box sx={{paddingTop:{xs:'0',lg:'10%'},minHeight:'300px',maxHeight:'auto'}}>
             <ResponsiveContainer width="100%" height={300}  >
               <BarChart
                 data={productStats}
