@@ -107,9 +107,9 @@ const StyledItem = styled(StyledPaper)(({ theme }) => ({
 
 // its gets it from api 
 const userStats = [
-  { name: 'Active Users', value: 400 },
-  { name: 'Inactive Users', value: 300 },
-  { name: 'New Users', value: 200 },
+  { name: 'Active', value: 400 },
+  { name: 'Inactive', value: 300 },
+  { name: 'New', value: 200 },
 ];
 
 const productStats = [
@@ -185,21 +185,24 @@ const Dashboard = () => {
         <h1>
           <DashboardIcon /> Dashboard
         </h1>
+        <Box sx={{width:{xs:'50%',sm:'auto'} }}>
         <ResponsiveStack />
-        <Box sx={{ mt: 4, mb: 4 }}>
+        </Box>
+        <Box sx={{ mt: 4, mb: 4 ,width:{xs:'50%',sm:'auto'} }}>
           <StackedAreas />
         </Box>
         <Box sx={{
           display: 'grid',
-          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+          gridTemplateColumns: { xs: '1fr',lg: '1fr 1fr' },
           gap: 3,
           mt: 4
         }}>
           {/* circle chart*/}
           <StyledPaper sx={{ p: 2 }}>
             <h2>Users status</h2>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
+            <Box sx={{width:{xs:'50%',sm:'auto',lg:'100%'},minHeight:'400px',maxHeight:'auto' }}>
+            <ResponsiveContainer width="100%" height={400} >
+              <PieChart >
                 <Pie
                   data={userStats}
                   cx="50%"
@@ -209,9 +212,10 @@ const Dashboard = () => {
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
+
                 >
                   {userStats.map((_,index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{fontSize:'10px'}}/>
                   ))}
                 </Pie>
                 <Tooltip
@@ -225,12 +229,14 @@ const Dashboard = () => {
                 />
               </PieChart>
             </ResponsiveContainer>
+            </Box>
           </StyledPaper>
 
           {/* bar chart*/}
           <StyledPaper sx={{ p: 2 }}>
             <h2>Products Statistics</h2>
-            <ResponsiveContainer width="100%" height={300}>
+            <Box sx={{paddingTop:{xs:'0',lg:'10%'},width:{xs:'50%',sm:'auto'},minHeight:'300px',maxHeight:'auto'}}>
+            <ResponsiveContainer width="100%" height={300}  >
               <BarChart
                 data={productStats}
                 margin={{
@@ -260,13 +266,15 @@ const Dashboard = () => {
                 <Bar dataKey="count" name="amounts" fill="#3269ba" />
               </BarChart>
             </ResponsiveContainer>
+            </Box>
           </StyledPaper>
         </Box>
-        <Box sx={{ mt: 4 }}>
+        <Box sx={{ mt: 4 , width:{xs:'50%',sm:'auto',lg:'100%'} }}>
           <CollapsibleTable />
         </Box>
+        <Box sx={{width:{xs:'50%',sm:'auto'} }}>
         <BasicStack />
-
+        </Box>
       </Box>
     </ResponsiveDrawer>
   );
@@ -326,7 +334,7 @@ function CollapsibleTable(): React.ReactElement {
 
   return (
     <>
-      <TableContainer component={StyledPaper} sx={{ width: "100%", overflowX: "auto" }}>
+      <TableContainer component={StyledPaper} sx={{ width: "auto", overflowX: "auto" }}>
         <Table aria-label="collapsible table" sx={{
           tableLayout: "auto",
           width: "100%",

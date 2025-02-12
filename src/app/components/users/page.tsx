@@ -294,6 +294,7 @@ const Page: React.FC = () => {
 
   return (
     <ResponsiveDrawer>
+      <Box sx={{width:{xs:'47%',sm:'auto'} }}>
       <Box sx={{ color: darkMode ? '#fff' : '#000' }}>
         <Box sx={{
           display: 'flex',
@@ -415,6 +416,7 @@ const Page: React.FC = () => {
         </Accordion>
       </Box>
       <BasicStack />
+      </Box>
     </ResponsiveDrawer>
   );
 };

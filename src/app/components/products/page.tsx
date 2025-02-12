@@ -160,6 +160,7 @@ export default function Page() {
 
   return (
     <ResponsiveDrawer>
+      <Box sx={{width:{xs:'65%',sm:'auto'} }}>
         <Box sx={{ 
         color: darkMode ? '#fff' : '#000',
         
@@ -225,6 +226,7 @@ export default function Page() {
       </Accordion>
       </Box>
       <BasicStack/>
+      </Box>
     </ResponsiveDrawer>
   );
 }

@@ -6,6 +6,7 @@ import ResponsiveDrawer from '../ResponsiveDrawer'
 const Reports: React.FC = () => {
   return (
     <ResponsiveDrawer>
+      
       <Image 
         src={Men} 
         alt="me" 
