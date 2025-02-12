@@ -178,6 +178,7 @@ const Dashboard = () => {
 
   return (
     <ResponsiveDrawer>
+      <Box sx={{width:{xs:'46%',sm:'auto'} }}>
       <Box sx={{
         color: darkMode ? '#fff' : '#000',
 
@@ -185,10 +186,10 @@ const Dashboard = () => {
         <h1>
           <DashboardIcon /> Dashboard
         </h1>
-        <Box sx={{width:{xs:'50%',sm:'auto'} }}>
+        
         <ResponsiveStack />
-        </Box>
-        <Box sx={{ mt: 4, mb: 4 ,width:{xs:'50%',sm:'auto'} }}>
+      
+        <Box sx={{ mt: 4, mb: 4 }}>
           <StackedAreas />
         </Box>
         <Box sx={{
@@ -198,7 +199,7 @@ const Dashboard = () => {
           mt: 4
         }}>
           {/* circle chart*/}
-          <StyledPaper sx={{ p: 2 ,width:{xs:'50%',sm:'auto'}}}>
+          <StyledPaper sx={{ p: 2 }}>
             <h2>Users status</h2>
             <Box sx={{minHeight:'400px',maxHeight:'auto' }}>
             <ResponsiveContainer width="100%" height={400} >
@@ -233,7 +234,7 @@ const Dashboard = () => {
           </StyledPaper>
 
           {/* bar chart*/}
-          <StyledPaper sx={{ p: 2 ,width:{xs:'50%',sm:'auto'}}}>
+          <StyledPaper sx={{ p: 2 }}>
             <h2>Products Statistics</h2>
             <Box sx={{paddingTop:{xs:'0',lg:'10%'},minHeight:'300px',maxHeight:'auto'}}>
             <ResponsiveContainer width="100%" height={300}  >
@@ -269,13 +270,14 @@ const Dashboard = () => {
             </Box>
           </StyledPaper>
         </Box>
-        <Box sx={{ mt: 4 , width:{xs:'50%',sm:'auto',lg:'100%'} }}>
+        <Box sx={{ mt: 4  }}>
           <CollapsibleTable />
         </Box>
-        <Box sx={{width:{xs:'50%',sm:'auto'} }}>
+        
         <BasicStack />
-        </Box>
+      
       </Box>
+    </Box>
     </ResponsiveDrawer>
   );
 }
