@@ -178,7 +178,8 @@ const Dashboard = () => {
 
   return (
     <ResponsiveDrawer>
-       <Grid item xs={2} sm={4} md={6} lg={12}>
+         <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
+        <Grid item xs={6}   sm={12}>
       <Box sx={{
         color: darkMode ? '#fff' : '#000',
 
@@ -277,6 +278,7 @@ const Dashboard = () => {
         <BasicStack />
       
       </Box>
+    </Grid>
     </Grid>
     </ResponsiveDrawer>
   );
