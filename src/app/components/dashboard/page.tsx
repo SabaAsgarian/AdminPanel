@@ -178,7 +178,7 @@ const Dashboard = () => {
 
   return (
     <ResponsiveDrawer>
-        <Grid item xs={6} sm={8} lg={12}>
+       <Grid item xs={2} sm={4} md={6} lg={12}>
       <Box sx={{
         color: darkMode ? '#fff' : '#000',
 
