@@ -161,7 +161,7 @@ export default function Page() {
   return (
     <ResponsiveDrawer>
       <Box sx={{ 
-        maxWidth: '100vw',
+        maxWidth: '90vw',
         overflowX: 'hidden'
       }}>
         <Grid container>
