@@ -178,108 +178,116 @@ const Dashboard = () => {
 
   return (
     <ResponsiveDrawer>
-         <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
-        <Grid item xs={6}   sm={12}>
-      <Box sx={{
-        color: darkMode ? '#fff' : '#000',
-
+      <Box sx={{ 
+        maxWidth: '100vw',
+        overflowX: 'hidden'
       }}>
-        <h1>
-          <DashboardIcon /> Dashboard
-        </h1>
-        
-        <ResponsiveStack />
-      
-        <Box sx={{ mt: 4, mb: 4 }}>
-          <StackedAreas />
-        </Box>
-        <Box sx={{
-          display: 'grid',
-          gridTemplateColumns: { xs: '1fr',lg: '1fr 1fr' },
-          gap: 3,
-          mt: 4
-        }}>
-          {/* circle chart*/}
-          <StyledPaper sx={{ p: 2 }}>
-            <h2>Users status</h2>
-            <Box sx={{minHeight:'400px',maxHeight:'auto' }}>
-            <ResponsiveContainer width="100%" height={400} >
-              <PieChart >
-                <Pie
-                  data={userStats}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                  outerRadius={100}
-                  fill="#8884d8"
-                  dataKey="value"
+        <Grid container>
+          <Grid item xs={12}>
+            <Box sx={{
+              width: { xs: '95%', sm: '100%' },
+              mx: 'auto',
+              color: darkMode ? '#fff' : '#000',
+              px: { xs: 1, sm: 2, md: 3 },
+            }}>
+              <h1>
+                <DashboardIcon /> Dashboard
+              </h1>
+              
+              <ResponsiveStack />
+            
+              <Box sx={{ mt: 4, mb: 4, width: '100%', overflowX: 'hidden' }}>
+                <StackedAreas />
+              </Box>
+              <Box sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' },
+                gap: { xs: 2, sm: 3 },
+                mt: 4,
+                width: '100%'
+              }}>
+                {/* circle chart*/}
+                <StyledPaper sx={{ p: 2 }}>
+                  <h2>Users status</h2>
+                  <Box sx={{minHeight:'400px',maxHeight:'auto' }}>
+                  <ResponsiveContainer width="100%" height={400} >
+                    <PieChart >
+                      <Pie
+                        data={userStats}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                        outerRadius={100}
+                        fill="#8884d8"
+                        dataKey="value"
 
-                >
-                  {userStats.map((_,index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{fontSize:'10px'}}/>
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: darkMode ? 'white' : '#fff',
-                    color: darkMode ? '#fff' : '#000',
-                  }}
-                />
-                <Legend
-                  formatter={(value) => <span style={{ color: darkMode ? '#fff' : '#000' }}>{value}</span>}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-            </Box>
-          </StyledPaper>
+                      >
+                        {userStats.map((_,index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}  style={{fontSize:'10px'}}/>
+                        ))}
+                      </Pie>
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: darkMode ? 'white' : '#fff',
+                          color: darkMode ? '#fff' : '#000',
+                        }}
+                      />
+                      <Legend
+                        formatter={(value) => <span style={{ color: darkMode ? '#fff' : '#000' }}>{value}</span>}
+                      />
+                    </PieChart>
+                  </ResponsiveContainer>
+                  </Box>
+                </StyledPaper>
 
-          {/* bar chart*/}
-          <StyledPaper sx={{ p: 2 }}>
-            <h2>Products Statistics</h2>
-            <Box sx={{paddingTop:{xs:'0',lg:'10%'},minHeight:'300px',maxHeight:'auto'}}>
-            <ResponsiveContainer width="100%" height={300}  >
-              <BarChart
-                data={productStats}
-                margin={{
-                  top: 5,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#444' : '#ccc'} />
-                <XAxis
-                  dataKey="name"
-                  tick={{ fill: darkMode ? '#fff' : '#000' }}
-                />
-                <YAxis
-                  tick={{ fill: darkMode ? '#fff' : '#000' }}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: darkMode ? '#222e3c' : '#fff',
-                    color: darkMode ? '#fff' : '#000',
-                  }}
-                />
-                <Legend
-                  formatter={(value) => <span style={{ color: darkMode ? '#fff' : '#000' }}>{value}</span>}
-                />
-                <Bar dataKey="count" name="amounts" fill="#3269ba" />
-              </BarChart>
-            </ResponsiveContainer>
+                {/* bar chart*/}
+                <StyledPaper sx={{ p: 2 }}>
+                  <h2>Products Statistics</h2>
+                  <Box sx={{paddingTop:{xs:'0',lg:'10%'},minHeight:'300px',maxHeight:'auto'}}>
+                  <ResponsiveContainer width="100%" height={300}  >
+                    <BarChart
+                      data={productStats}
+                      margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#444' : '#ccc'} />
+                      <XAxis
+                        dataKey="name"
+                        tick={{ fill: darkMode ? '#fff' : '#000' }}
+                      />
+                      <YAxis
+                        tick={{ fill: darkMode ? '#fff' : '#000' }}
+                      />
+                      <Tooltip
+                        contentStyle={{
+                          backgroundColor: darkMode ? '#222e3c' : '#fff',
+                          color: darkMode ? '#fff' : '#000',
+                        }}
+                      />
+                      <Legend
+                        formatter={(value) => <span style={{ color: darkMode ? '#fff' : '#000' }}>{value}</span>}
+                      />
+                      <Bar dataKey="count" name="amounts" fill="#3269ba" />
+                    </BarChart>
+                  </ResponsiveContainer>
+                  </Box>
+                </StyledPaper>
+              </Box>
+              <Box sx={{ mt: 4  }}>
+                <CollapsibleTable />
+              </Box>
+              
+              <BasicStack />
+            
             </Box>
-          </StyledPaper>
-        </Box>
-        <Box sx={{ mt: 4  }}>
-          <CollapsibleTable />
-        </Box>
-        
-        <BasicStack />
-      
+          </Grid>
+        </Grid>
       </Box>
-    </Grid>
-    </Grid>
     </ResponsiveDrawer>
   );
 }
