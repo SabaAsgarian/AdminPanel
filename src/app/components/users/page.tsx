@@ -294,128 +294,143 @@ const Page: React.FC = () => {
 
   return (
     <ResponsiveDrawer>
-      <Box sx={{width:{xs:'47%',sm:'auto'} }}>
-      <Box sx={{ color: darkMode ? '#fff' : '#000' }}>
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          mb: 4
-        }}>
-          <h1>
-            <PeopleIcon /> Users
-          </h1>
-
-          {/* Search Box */}
-          <WhiteTextField
-            placeholder="Search by name..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            sx={{
-              width: '300px',
-              backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-              '& .MuiInputBase-input': {
-                color: darkMode ? '#fff !important' : '#000 !important',
-              },
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  borderColor: darkMode ? '#fff' : '#000',
-                },
-              },
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon sx={{ color: darkMode ? '#fff' : '#000' }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Box>
-
-        <CollapsibleTable searchTerm={searchTerm} />
-
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'start',
-          alignItems: 'center',
-          mt: 5,
-          fontWeight: 'bolder',
-          color: darkMode ? '#fff' : '#000',
-          backgroundColor: darkMode ? '#222e3c' : '#fff',
-        }}>
-          ADD New Users
-          <ControlPointIcon
-            sx={{
-              cursor: 'pointer',
-              fontSize: '50px',
+      <Box sx={{ 
+        maxWidth: '100vw',
+        overflowX: 'hidden'
+      }}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Box sx={{
+              width: { xs: '95%', sm: '100%' },
+              mx: 'auto',
               color: darkMode ? '#fff' : '#000',
-              backgroundColor: darkMode ? '#222e3c' : '#fff',
-            }}
-            onClick={() => setOpen(!open)}
-          />
-        </Box>
-        <Accordion
-          expanded={open}
-          sx={{
-            backgroundColor: darkMode ? '#222e3c' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-          }}
-        >
-          <AccordionSummary sx={{ backgroundColor: darkMode ? '#222e3c' : '#fff', }} expandIcon={
-            <ExpandMoreIcon sx={{ color: darkMode ? '#fff' : '#000', backgroundColor: darkMode ? '#222e3c' : '#fff', }} />
-          }>
-            <h2>Add Users Details</h2>
-          </AccordionSummary>
-          <AccordionDetails >
-            <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
-              <Grid item xs={6} sm={8} lg={12}>
-                {([
-                  { name: 'img' as keyof FormData, label: 'Image' },
-                  { name: 'fname' as keyof FormData, label: 'First Name' },
-                  { name: 'lname' as keyof FormData, label: 'Last Name' },
-                  { name: 'street' as keyof FormData, label: 'Street' },
-                  { name: 'status' as keyof FormData, label: 'Status' },
-                  { name: 'user' as keyof FormData, label: 'User' },
-                  { name: 'age' as keyof FormData, label: 'Age' },
-                  { name: 'pass' as keyof FormData, label: 'Password' },
-                  { name: 'city' as keyof FormData, label: 'City' },
-                  { name: 'email' as keyof FormData, label: 'Email' },
-                  { name: 'mobile' as keyof FormData, label: 'Mobile' }
-                ]).map((field) => (
+              px: { xs: 1, sm: 2, md: 3 },
+            }}>
+              <Box sx={{ color: darkMode ? '#fff' : '#000' }}>
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 4,
+                  flexDirection: {sm: 'row' },
+                  gap: { xs: 2, sm: 0 }
+                }}>
+                  <h1>
+                    <PeopleIcon /> Users
+                  </h1>
+
                   <WhiteTextField
-                    key={field.name}
-                    id={field.name}
-                    name={field.name}
-                    label={field.label}
-                    value={formData[field.name]}
-                    onChange={handleInputChange}
+                    placeholder="Search by name..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     sx={{
+                      width: { xs: '100%', sm: '300px' },
                       backgroundColor: darkMode ? '#2c3b4f' : '#fff',
                       '& .MuiInputBase-input': {
                         color: darkMode ? '#fff !important' : '#000 !important',
-                      },
-                      '& .MuiInputLabel-root': {
-                        color: darkMode ? '#fff' : '#000',
                       },
                       '& .MuiOutlinedInput-root': {
                         '& fieldset': {
                           borderColor: darkMode ? '#fff' : '#000',
                         },
                       },
-                      '& label.Mui-focused': {
-                        color: darkMode ? '#fff' : '#000',
-                      },
+                    }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <SearchIcon sx={{ color: darkMode ? '#fff' : '#000' }} />
+                        </InputAdornment>
+                      ),
                     }}
                   />
-                ))}
-                <StyledButton variant="contained" onClick={handleSubmit}>Submit</StyledButton>
-              </Grid>
-            </Grid>
-          </AccordionDetails>
-        </Accordion>
-      </Box>
-      <BasicStack />
+                </Box>
+
+                <CollapsibleTable searchTerm={searchTerm} />
+
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'start',
+                  alignItems: 'center',
+                  mt: 5,
+                  fontWeight: 'bolder',
+                  color: darkMode ? '#fff' : '#000',
+                  backgroundColor: darkMode ? '#222e3c' : '#fff',
+                }}>
+                  ADD New Users
+                  <ControlPointIcon
+                    sx={{
+                      cursor: 'pointer',
+                      fontSize: '50px',
+                      color: darkMode ? '#fff' : '#000',
+                      backgroundColor: darkMode ? '#222e3c' : '#fff',
+                    }}
+                    onClick={() => setOpen(!open)}
+                  />
+                </Box>
+                <Accordion
+                  expanded={open}
+                  sx={{
+                    backgroundColor: darkMode ? '#222e3c' : '#fff',
+                    color: darkMode ? '#fff' : '#000',
+                  }}
+                >
+                  <AccordionSummary sx={{ backgroundColor: darkMode ? '#222e3c' : '#fff', }} expandIcon={
+                    <ExpandMoreIcon sx={{ color: darkMode ? '#fff' : '#000', backgroundColor: darkMode ? '#222e3c' : '#fff', }} />
+                  }>
+                    <h2>Add Users Details</h2>
+                  </AccordionSummary>
+                  <AccordionDetails >
+                    <Grid container spacing={2} sx={{ justifyContent: "space-between" }}>
+                      <Grid item xs={6} sm={8} lg={12}>
+                        {([
+                          { name: 'img' as keyof FormData, label: 'Image' },
+                          { name: 'fname' as keyof FormData, label: 'First Name' },
+                          { name: 'lname' as keyof FormData, label: 'Last Name' },
+                          { name: 'street' as keyof FormData, label: 'Street' },
+                          { name: 'status' as keyof FormData, label: 'Status' },
+                          { name: 'user' as keyof FormData, label: 'User' },
+                          { name: 'age' as keyof FormData, label: 'Age' },
+                          { name: 'pass' as keyof FormData, label: 'Password' },
+                          { name: 'city' as keyof FormData, label: 'City' },
+                          { name: 'email' as keyof FormData, label: 'Email' },
+                          { name: 'mobile' as keyof FormData, label: 'Mobile' }
+                        ]).map((field) => (
+                          <WhiteTextField
+                            key={field.name}
+                            id={field.name}
+                            name={field.name}
+                            label={field.label}
+                            value={formData[field.name]}
+                            onChange={handleInputChange}
+                            sx={{
+                              backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                              '& .MuiInputBase-input': {
+                                color: darkMode ? '#fff !important' : '#000 !important',
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: darkMode ? '#fff' : '#000',
+                              },
+                              '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                  borderColor: darkMode ? '#fff' : '#000',
+                                },
+                              },
+                              '& label.Mui-focused': {
+                                color: darkMode ? '#fff' : '#000',
+                              },
+                            }}
+                          />
+                        ))}
+                        <StyledButton variant="contained" onClick={handleSubmit}>Submit</StyledButton>
+                      </Grid>
+                    </Grid>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
+              <BasicStack />
+            </Box>
+          </Grid>
+        </Grid>
       </Box>
     </ResponsiveDrawer>
   );

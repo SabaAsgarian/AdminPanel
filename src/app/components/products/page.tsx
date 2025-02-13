@@ -160,72 +160,95 @@ export default function Page() {
 
   return (
     <ResponsiveDrawer>
-      <Box sx={{width:{xs:'65%',sm:'auto'} }}>
-        <Box sx={{ 
-        color: darkMode ? '#fff' : '#000',
-        
+      <Box sx={{ 
+        maxWidth: '100vw',
+        overflowX: 'hidden'
       }}>
-      <h1>
-        <ShoppingBagIcon /> Products
-      </h1>
-      <Box sx={{ mt: 4 }}>
-        <CollapsibleTable />
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "start", alignItems: "center", mt: 5, fontWeight: "bolder" , color: darkMode ? '#fff' : '#000',
-          backgroundColor: darkMode ? '#222e3c' : '#fff'}}>
-        ADD New Product
-        <ControlPointIcon
-          sx={{ cursor: "pointer", fontSize: "50px", color: darkMode ? '#fff' : '#000',
-            backgroundColor: darkMode ? '#222e3c' : '#fff', }}
-          onClick={() => setOpen(!open)}
-        />
-      </Box>
-      <Accordion expanded={open} sx={{
-            backgroundColor: darkMode ? '#222e3c' : '#fff',
-            color: darkMode ? '#fff' : '#000',
-          }}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <h2>Add Product Details</h2>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
-            {["avatar", "title", "brand", "price", "color", "description"].map((field) => (
-              <Grid key={field} item xs={12} sm={8} lg={6} xl={6}>
-                <WhiteTextField
-                  id={field}
-                  name={field}
-                  label={field.charAt(0).toUpperCase() + field.slice(1)}
-                  value={formData[field as keyof Product]}
-                  onChange={handleInputChange}
-                  sx={{
-                    backgroundColor: darkMode ? '#2c3b4f' : '#fff',
-                    '& .MuiInputBase-input': {
-                      color: darkMode ? '#fff !important' : '#000 !important',
-                    },
-                    '& .MuiInputLabel-root': {
-                      color: darkMode ? '#fff' : '#000',
-                    },
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderColor: darkMode ? '#fff' : '#000',
-                      },
-                    },
-                    '& label.Mui-focused': {
-                      color: darkMode ? '#fff' : '#000',
-                    },
-  
-                  }}
-                />
-              </Grid>
-            ))}
+        <Grid container>
+          <Grid item xs={12}>
+            <Box sx={{
+              width: { xs: '95%', sm: '100%' },
+              mx: 'auto',
+              color: darkMode ? '#fff' : '#000',
+              px: { xs: 1, sm: 2, md: 3 },
+            }}>
+              <Box sx={{ 
+                color: darkMode ? '#fff' : '#000',
+              }}>
+                <h1>
+                  <ShoppingBagIcon /> Products
+                </h1>
+                <Box sx={{ mt: 4 }}>
+                  <CollapsibleTable />
+                </Box>
+                <Box sx={{ 
+                  display: "flex", 
+                  justifyContent: "start", 
+                  alignItems: "center", 
+                  mt: 5, 
+                  fontWeight: "bolder",
+                  color: darkMode ? '#fff' : '#000',
+                  backgroundColor: darkMode ? '#222e3c' : '#fff'
+                }}>
+                  ADD New Product
+                  <ControlPointIcon
+                    sx={{ 
+                      cursor: "pointer", 
+                      fontSize: "50px",
+                      color: darkMode ? '#fff' : '#000'
+                    }}
+                    onClick={() => setOpen(!open)}
+                  />
+                </Box>
+                <Accordion expanded={open} sx={{
+                  backgroundColor: darkMode ? '#222e3c' : '#fff',
+                  color: darkMode ? '#fff' : '#000',
+                }}>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <h2>Add Product Details</h2>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
+                      {["avatar", "title", "brand", "price", "color", "description"].map((field) => (
+                        <Grid key={field} item xs={12} sm={8} lg={6} xl={6}>
+                          <WhiteTextField
+                            id={field}
+                            name={field}
+                            label={field.charAt(0).toUpperCase() + field.slice(1)}
+                            value={formData[field as keyof Product]}
+                            onChange={handleInputChange}
+                            sx={{
+                              backgroundColor: darkMode ? '#2c3b4f' : '#fff',
+                              '& .MuiInputBase-input': {
+                                color: darkMode ? '#fff !important' : '#000 !important',
+                              },
+                              '& .MuiInputLabel-root': {
+                                color: darkMode ? '#fff' : '#000',
+                              },
+                              '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                  borderColor: darkMode ? '#fff' : '#000',
+                                },
+                              },
+                              '& label.Mui-focused': {
+                                color: darkMode ? '#fff' : '#000',
+                              },
+    
+                            }}
+                          />
+                        </Grid>
+                      ))}
+                    </Grid>
+                    <StyledButton sx={{ mt: "5%" }} variant="contained" onClick={handleSubmit}>
+                      Submit
+                    </StyledButton>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
+              <BasicStack/>
+            </Box>
           </Grid>
-          <StyledButton sx={{ mt: "5%" }} variant="contained" onClick={handleSubmit}>
-            Submit
-          </StyledButton>
-        </AccordionDetails>
-      </Accordion>
-      </Box>
-      <BasicStack/>
+        </Grid>
       </Box>
     </ResponsiveDrawer>
   );
