@@ -7,7 +7,7 @@ admin panel with functional sign up and sign in
 
 - Created - 2025-01-24
 
-- Technologies Used - Html , Css , MaterialUi , Nextjs , React,Typescript,FetchApi,Crud(Create Read Update Delete) api,Dark-Light mode ,React Query ,Context Api
+- Technologies Used - Html , Css , Material Ui , Nextjs , React , Typescript , FetchApi , CRUD(Create , Read  , Update , Delete) api, Dark-Light mode , React Query , Context Api
 
 - Hooks Used : useState
 - Role - Frontend
