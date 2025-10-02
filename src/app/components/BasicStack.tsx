@@ -55,16 +55,16 @@ const BasicStack: React.FC<BasicStackProps> = () => {
               }}
             />
             Developed by Saba Asgarian
-            <Link href="https://www.instagram.com/saba_asgarian_web?igsh=M2Z2dTU3cHFmeW1o&utm_source=qr">
+            <Link href="https://www.instagram.com/saba_asgarian_">
               <InstagramIcon sx={iconStyle} />
             </Link>
-            <Link href="https://www.linkedin.com/in/saba-asgarian-69161088?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
+            <Link href="https://www.linkedin.com/in/saba-asgarian-69161088/">
               <LinkedInIcon sx={iconStyle} />
             </Link>
             <Link href="https://github.com/SabaAsgarian">
               <GitHubIcon sx={iconStyle} />
             </Link>
-            <Link href="mailto:computer.sabaa@gmail.com">
+            <Link href="mailto:sabaasgariandev@gmail.com">
               <MailIcon sx={iconStyle} />
             </Link>
           </Box>
@@ -75,3 +75,4 @@ const BasicStack: React.FC<BasicStackProps> = () => {
 };
 
 export default BasicStack;
+
